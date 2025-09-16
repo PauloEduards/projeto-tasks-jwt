@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const {generateToken} = require('../middlewares/authMiddleware')
+
 const login = async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -62,6 +63,7 @@ const register = async(req, res) => {
     });
   }
 };
+
 
 module.exports = {
   login,
