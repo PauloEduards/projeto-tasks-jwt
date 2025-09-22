@@ -1,0 +1,221 @@
+/* Importa a fonte do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* Define as cores e fontes principais para todo o site */
+:root {
+    --primary-color: #c2db34;
+    --secondary-color: #ecea60;
+    --background-color: #f7ed93;
+    --text-color: #333;
+    --card-bg-color: #ffffff;
+    --input-bg-color: #f2f2f2;
+    --border-color: #e0e0e0;
+    --danger-color: #e74c3c;
+}
+
+/* Estilos gerais para o corpo da página */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    height: 100vh;
+}
+
+/* --- ESTILO PARA PÁGINAS COM TELA DIVIDIDA (LOGIN, REGISTRO, FORMS) --- */
+
+.split-screen {
+    display: flex;
+    height: 100%;
+}
+
+.left-pane, .right-pane {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Painel da Esquerda (com degradê) */
+.left-pane {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    color: white;
+    text-align: center;
+    padding: 2rem;
+}
+
+.left-pane .content {
+    max-width: 400px;
+}
+
+.left-pane .icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 2rem;
+}
+
+.left-pane h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Painel da Direita (com o formulário) */
+.form-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 3rem;
+    background-color: var(--card-bg-color);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 0.9rem;
+    border: none;
+    background-color: var(--input-bg-color);
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    resize: vertical;
+}
+
+.form-button {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.form-button:hover {
+    transform: scale(1.02);
+}
+
+.bottom-text {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.bottom-text a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+
+/* --- ESTILO PARA A PÁGINA DE TAREFAS (PAINEL ÚNICO) --- */
+.tasks-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.tasks-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.tasks-header h1 {
+    font-size: 2rem;
+}
+
+.tasks-header .btn {
+    text-decoration: none;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: transform 0.2s;
+}
+
+.tasks-header .new-task-btn {
+    background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+    margin-right: 1rem;
+}
+
+.tasks-header .logout-btn {
+    background-color: var(--danger-color);
+}
+
+.tasks-card {
+    background-color: var(--card-bg-color);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.task-item:last-child {
+    border-bottom: none;
+}
+
+.task-content.completed {
+    text-decoration: line-through;
+    color: #aaa;
+}
+
+.task-actions {
+    margin-left: auto; /* Joga os botões para a direita */
+    display: flex;
+    gap: 0.75rem;
+}
+
+.task-actions .icon-btn {
+    background: none;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 800px) {
+    .split-screen {
+        flex-direction: column;
+    }
+    .left-pane, .right-pane {
+        width: 100%;
+        height: auto;
+    }
+    .left-pane {
+        padding: 4rem 2rem;
+    }
+}
