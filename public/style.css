@@ -3,9 +3,9 @@
 
 /* Define as cores e fontes principais para todo o site */
 :root {
-    --primary-color: #c2db34;
+    --primary-color: #1dc593;
     --secondary-color: #ecea60;
-    --background-color: #f7ed93;
+    --background-color: #1dc593;
     --text-color: #333;
     --card-bg-color: #ffffff;
     --input-bg-color: #f2f2f2;
@@ -15,7 +15,7 @@
 
 /* Estilos gerais para o corpo da página */
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Arial', sans-serif;
     background-color: var(--background-color);
     color: var(--text-color);
     margin: 0;
@@ -38,7 +38,7 @@ body {
 
 /* Painel da Esquerda (com degradê) */
 .left-pane {
-    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
     color: white;
     text-align: center;
     padding: 2rem;
@@ -91,7 +91,7 @@ body {
     padding: 0.9rem;
     border: none;
     background-color: var(--input-bg-color);
-    border-radius: 10px;
+    border-radius: 5px;
     font-family: 'Poppins', sans-serif;
     font-size: 1rem;
     resize: vertical;
@@ -101,7 +101,7 @@ body {
     width: 100%;
     padding: 1rem;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
     color: white;
     font-family: 'Poppins', sans-serif;
@@ -150,7 +150,7 @@ body {
     text-decoration: none;
     color: white;
     padding: 0.75rem 1.5rem;
-    border-radius: 10px;
+    border-radius: 5px;
     font-weight: 600;
     transition: transform 0.2s;
 }

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Gestor de Tarefas</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="split-screen">
+        <div class="left-pane">
+            </div>
+        <div class="right-pane">
+            <div class="form-container">
+                <form action="/api/user/register" method="POST">
+                    <h2>Crie sua Conta</h2>
+                    
+                    <% if (typeof error !== 'undefined' && error) { %>
+                        <p style="color: #e74c3c; text-align: center; background-color: rgba(231, 76, 60, 0.1); padding: 0.75rem; border-radius: 8px;">
+                            <%= error %>
+                        </p>
+                    <% } %>
+
+                    <div class="form-group">
+                        <label for="name">Seu Nome</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Endereço de E-mail</label>
+                        <input type="email" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="form-button">Registrar</button>
+                    <p class="bottom-text">Já tem uma conta? <a href="/login">Faça o login</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

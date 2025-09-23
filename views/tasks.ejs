@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Tarefas</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        /* CSS Adicional para o modal de confirmação */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); display: flex;
+            justify-content: center; align-items: center; z-index: 1000;
+            opacity: 0; visibility: hidden; transition: all 0.3s;
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-content {
+            background-color: white; padding: 2rem; border-radius: 15px;
+            text-align: center; max-width: 400px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transform: scale(0.9); transition: transform 0.3s;
+        }
+        .modal-overlay.active .modal-content { transform: scale(1); }
+        .modal-actions { display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; }
+        .modal-actions button, .modal-actions a {
+            border: none; padding: 0.75rem 1.5rem; border-radius: 8px;
+            font-family: 'Poppins', sans-serif; font-weight: 600; cursor: pointer; text-decoration: none;
+        }
+        .modal-confirm-btn { background-color: var(--danger-color); color: white; }
+        .modal-cancel-btn { background-color: #eee; color: #333; }
+    </style>
+</head>
+<body>
+    <div class="tasks-container">
+        <header class="tasks-header">
+            <h1>Minhas Tarefas</h1>
+            <div>
+                <a href="/tasks/new" class="btn new-task-btn">Nova Tarefa</a>
+                <a href="/api/user/logout" class="btn logout-btn">Sair</a>
+            </div>
+        </header>
+        
+        <div class="tasks-card">
+            <% if (tasks.length === 0) { %>
+                <p>Você ainda não tem tarefas. Que tal criar a primeira?</p>
+            <% } else { %>
+                <% tasks.forEach(task => { %>
+                    <div class="task-item">
+                        <div class="task-content <%= task.completed ? 'completed' : '' %>">
+                            <h3><%= task.title %></h3>
+                            <p><%= task.description %></p>
+                        </div>
+                        <div class="task-actions">
+                             <form action="/api/task/complete/<%= task.id %>" method="POST">
+                                <button type="submit" class="icon-btn" title="Completar"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></svg></button>
+                            </form>
+                            <a href="/tasks/edit/<%= task.id %>" class="icon-btn" title="Editar"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M200-200h56l345-345-56-56-345 345v56Zm572-403L602-771l56-56q23-23 56.5-23t56.5 23l56 56q23 23 23 56.5T828-659l-56 56Z"/></svg></a>
+                            <button type="button" class="icon-btn js-delete-trigger" data-action="/api/task/delete/<%= task.id %>" title="Excluir"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Z"/></svg></button>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } %>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="delete-modal">
+        <div class="modal-content">
+            <h3>Confirmar Exclusão</h3>
+            <p>Esta ação não pode ser desfeita.</p>
+            <div class="modal-actions">
+                <button type="button" class="modal-cancel-btn" id="modal-cancel">Cancelar</button>
+                <form id="modal-delete-form" method="POST">
+                    <button type="submit" class="modal-confirm-btn">Sim, excluir</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('delete-modal');
+            const deleteTriggers = document.querySelectorAll('.js-delete-trigger');
+            const cancelBtn = document.getElementById('modal-cancel');
+            const deleteForm = document.getElementById('modal-delete-form');
+
+            const openModal = (actionUrl) => {
+                deleteForm.action = actionUrl;
+                modal.classList.add('active');
+            };
+            const closeModal = () => modal.classList.remove('active');
+
+            deleteTriggers.forEach(button => button.addEventListener('click', function() {
+                openModal(this.dataset.action);
+            }));
+            cancelBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal) closeModal();
+            });
+        });
+    </script>
+</body>
+</html>

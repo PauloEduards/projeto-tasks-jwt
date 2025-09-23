@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Tarefa - Gestor de Tarefas</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="split-screen">
+        <div class="left-pane">
+            <div class="content">
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M14 10H2v2h12v-2zm0-4H2v2h12V6zM2 16h8v-2H2v2zm19.5-4.5L23 13l-6.99 7-4.51-4.5L13 14l3.01 3L20.5 11.5z"/></svg>
+                <h1>Nova Tarefa</h1>
+                <p>Defina claramente seus objetivos para ter mais foco e produtividade.</p>
+            </div>
+        </div>
+        <div class="right-pane">
+            <div class="form-container">
+                <form action="/api/task" method="POST">
+                    <h2>Criar Nova Tarefa</h2>
+                    <div class="form-group">
+                        <label for="title">Título da Tarefa</label>
+                        <input type="text" id="title" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Descrição (Opcional)</label>
+                        <textarea id="description" name="description" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="form-button">Adicionar Tarefa</button>
+                    <p class="bottom-text"><a href="/tasks">Cancelar</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
